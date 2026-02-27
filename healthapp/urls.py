@@ -1,3 +1,4 @@
+from os import name
 
 from django.contrib import admin
 from django.urls import path
@@ -12,4 +13,8 @@ urlpatterns = [
     path('starter/', views.starter, name='starter'),
     path('about/', views.about, name='about'),
     path('appointment/', views.appointment, name='appointment'),
+    path('show/', views.show, name='show'),
+    path('delete/<int:id>/', views.delete, ),
+    path('edit/<int:id>/', views.edit, name='edit' ),
+
 ]
