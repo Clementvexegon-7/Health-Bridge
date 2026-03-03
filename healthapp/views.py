@@ -1,7 +1,8 @@
-from os import name
 
-from django.shortcuts import render,redirect, get_object_or_404,HttpResponse
+from urllib import response
 
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse, JsonResponse
 from healthapp.models import *
 
 #Mpesa Views
@@ -116,7 +117,10 @@ def stk(request):
         }
         response = requests.post(api_url, json=request_data, headers=headers)
 
-        response_data = response.json()
+        try:
+         response_data = response.json()
+        except:
+            return HttpResponse(f"Invalid response from Safaricom: {response.text}")
         transaction_id = response_data.get("CheckoutRequestID", "N/A")
         result_code = response_data.get("ResponseCode", "1")
 
@@ -200,3 +204,10 @@ def transactions_list(request):
     # Only show successfully completed transactions
     transactions = Transaction.objects.filter(status="Success").order_by('-date')
     return render(request, 'transactions.html', {'transactions': transactions})
+
+def register(request):
+    return render(request, 'register.html')
+
+
+def login(request):
+    return render(request, 'login.html')

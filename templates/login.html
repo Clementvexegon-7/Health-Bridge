@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - HealthBridge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+<section class="vh-100" style="background-color: lightblue;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card shadow" style="border-radius: 1rem;">
+          <div class="row g-0">
+
+            <!-- Image Side -->
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                   alt="login form"
+                   class="img-fluid"
+                   style="border-radius: 1rem 0 0 1rem;" />
+            </div>
+
+            <!-- Form Side -->
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+
+                <form method="POST">
+                  {% csrf_token %}
+
+                  <h3 class="fw-bold mb-4">Sign into your account</h3>
+
+                  <div class="mb-4">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control form-control-lg" required>
+                  </div>
+
+                  <div class="mb-4">
+                    <label class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control form-control-lg" required>
+                  </div>
+
+                  <div class="mb-4">
+                    <button class="btn btn-dark btn-lg w-100" type="submit">
+                      Login
+                    </button>
+                  </div>
+
+                  <p class="mb-2">
+                    Don't have an account?
+                    <a href="{% url 'register' %}">Register here</a>
+                  </p>
+
+                </form>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bootstrap JS -->
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+</body>
+</html>
